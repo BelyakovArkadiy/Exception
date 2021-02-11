@@ -18,7 +18,6 @@ class ProductRepositoryTest {
     private Product prod4 = new TShirt(4, "GAP", 150, "green", "XL");
 
 
-
     @Test
     void removeById() {
         repository.save(prod1);
@@ -28,11 +27,12 @@ class ProductRepositoryTest {
         int id = 2;
         repository.removeById(id);
         Product[] actual = repository.findAll();
-        Product[] expected = new Product[]{prod1,prod3,prod4};
+        Product[] expected = new Product[]{prod1, prod3, prod4};
 
         assertArrayEquals(actual, expected);
 
     }
+
     @Test
     void removeById2() {
         repository.save(prod1);
@@ -40,18 +40,8 @@ class ProductRepositoryTest {
         repository.save(prod3);
         repository.save(prod4);
         int id = 5;
-        repository.removeById(id);
-        assertThrows();
 
-
-
-
-
+        assertThrows(NotFoundException.class, () -> repository.removeById(id));
     }
 
-    /*}
-
-    @Test
-    void removeById() {
-    }*/
-    }
+}
